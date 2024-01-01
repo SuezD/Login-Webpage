@@ -15,10 +15,12 @@ Using this project to:
 - [x] Setup MongoDB
 - [x] Connect API to DB
 - [x] Create HTML Webpage that connects to API
-- [ ] Add signup functionality to webpage
-- [ ] Add login functionality to webpage
-- [ ] Improve design
-- [ ] Add 'My Profile' page where user can view and update info
+- [x] Add signup functionality to webpage
+- [x] Add login functionality to webpage
+- [ ] Add true token generation and fetching user info
+- [x] Improve design of first page
+- [x] Add 'My Profile' page where user can view and update info
+- [ ] Improve design of second page
 
 ## Setup
 ### Start Mongo DB
