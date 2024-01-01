@@ -4,7 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchUserDetails() {
-    fetch('/api/get-user-details') // Replace with your actual endpoint for getting user details
+    fetch('/user-details', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': '12345678'
+        },
+    }) 
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -17,8 +23,7 @@ function fetchUserDetails() {
 }
 
 function displayUserDetails(userDetails) {
-    document.getElementById('username-placeholder').innerText = userDetails.username;
-    document.getElementById('password-placeholder').innerText = userDetails.password;
-    document.getElementById('firstname-placeholder').innerText = userDetails.firstName;
+    document.getElementById('username').innerText = userDetails.username;
+    document.getElementById('firstname').innerText = userDetails.firstName;
     // Update other placeholders for additional user details
 }
