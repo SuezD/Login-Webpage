@@ -11,9 +11,10 @@ Using this project to:
 4) Add desired css and js
 
 ## TO DO
-- [ ] Build API
-- [ ] Setup DB
-- [ ] Create HTML Webpage that connects to API
+- [x] Build Basic API
+- [x] Setup MongoDB
+- [x] Connect API to DB
+- [x] Create HTML Webpage that connects to API
 - [ ] Add signup functionality to webpage
 - [ ] Add login functionality to webpage
 - [ ] Improve design
@@ -30,7 +31,10 @@ Run the below command to start the MongoDB service
   ./gradlew build
   ./gradlew bootRun
   ```
-### Make a curl request
+### Option 1: Visit Webpage
+Visit http://localhost:8080/
+
+### Option 2: Make a curl request
   ```
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password", "firstName":"your_firstname"}' http://localhost:8080/signup
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password"}' http://localhost:8080/login
