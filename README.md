@@ -20,17 +20,17 @@ Using this project to:
 - [ ] Add 'My Profile' page where user can view and update info
 
 ## Setup
-## Start Mongo DB
+### Start Mongo DB
 Run the below command to start the MongoDB service
   ```
   brew services start mongodb-community
   ```
-## Run Springboot Application
+### Run Springboot Application
   ```
   ./gradlew build
   ./gradlew bootRun
   ```
-## Make a curl request
+### Make a curl request
   ```
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password", "firstName":"your_firstname"}' http://localhost:8080/signup
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password"}' http://localhost:8080/login
