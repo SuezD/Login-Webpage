@@ -60,10 +60,13 @@ h2 {
     text-align: center;
 }
 
-/* Make the view more square */
+#user-details {
+    margin: 20px;
+}
+
 .container,
 .tab {
-    width: 300px; /* Adjust the width as needed */
+    width: 300px;
 }
 
 button {
