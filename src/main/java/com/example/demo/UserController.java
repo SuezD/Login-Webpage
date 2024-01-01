@@ -37,16 +37,15 @@ public class UserController {
             return ResponseEntity.badRequest().body("User not found");
         }
 
-        // Hash password
-        String hashedPassword = new BCryptPasswordEncoder().encode(password);
-
-        if (!user.getPassword().equals(hashedPassword)){
+        if (!new BCryptPasswordEncoder().matches(password, user.getPassword())){
+            System.out.println(user.getPassword());
+            System.out.println(password);
             return ResponseEntity.badRequest().body("Incorrect password");
         }
 
         // Generate token and return as cookie
         String accessToken = generateAccessToken(user);
-        Cookie cookie = new Cookie("access_token", accessToken);
+        Cookie cookie = new Cookie("access_token", user.getUsername());
         cookie.setPath("/"); // Set the cookie path as needed
         cookie.setSecure(true);
         cookie.setHttpOnly(true);
@@ -86,7 +85,7 @@ public class UserController {
 
         // generate token and return in cookie
         String accessToken = generateAccessToken(user);
-        Cookie cookie = new Cookie("access_token", accessToken);
+        Cookie cookie = new Cookie("access_token", user.getUsername());
         cookie.setPath("/"); // Set the cookie path
         cookie.setSecure(true);
         cookie.setHttpOnly(true);
@@ -98,7 +97,7 @@ public class UserController {
     @PostMapping("/user-details")
     private ResponseEntity<User> userDetails(@CookieValue(name = "access_token", required = true) String accessToken) {
         if (isValidToken(accessToken)) {
-            User user = fetchUserDetails();
+            User user = fetchUserDetails(accessToken);
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -115,9 +114,9 @@ public class UserController {
         return accessToken != null && !accessToken.isEmpty();
     }
 
-    private User fetchUserDetails() {
+    private User fetchUserDetails(String username) {
         // Should decrypt token and extract details from there (possibly?)
-        String username = "kimkil";
+        // String username = "kimkil";
         User user = userRepository.findByUsername(username);
         return user;
     }
