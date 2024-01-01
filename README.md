@@ -28,6 +28,13 @@ Run the below command to start the MongoDB service
   ```
   brew services start mongodb-community
   ```
+### Query DB
+  ```
+  mongosh
+  user user-details
+  show collections
+  db.users.find()
+  ```
 ### Run Springboot Application
   ```
   ./gradlew build
