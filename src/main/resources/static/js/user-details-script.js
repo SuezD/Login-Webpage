@@ -25,3 +25,11 @@ function displayUserDetails(userDetails) {
     document.getElementById('username').innerText = userDetails.username;
     document.getElementById('firstname').innerText = userDetails.firstName;
 }
+
+function logout(){
+    // redirect 
+}
+
+function deleteAccount(){
+
+}
