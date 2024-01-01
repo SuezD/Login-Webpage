@@ -5,19 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>User Details</title>
+    <title>Profile</title>
 </head>
-<body>
+<body class="user-details-page">
     <div id="user-details-container" class="container">
-        <h2>User Details</h2>
+        <h2>Profile</h2>
         <div id="user-details">
-            <p><strong>Username:</strong> <span id="username"></span></p>
-            <p><strong>First Name:</strong> <span id="firstname"></span></p>
-        </div>
+          <p><span class="label">Username</span> 
+          <span class="value" id="username"></span></p>
+          <p><span class="label">First Name</span> 
+          <span class="value" id="firstname"></span></p>
+      </div>
+        <!-- Log out to return to main page -->
+        <button type="button" class="user-details" onclick="logout()">Log Out</button>
+        <!-- DELETE ACCOUNT button -->
+        <button type="button" class="user-details" id="delete" onclick="deleteAccount()">Delete Account</button>
     </div>
-
-    <!-- Log out to return to main page -->
-    <!-- DELETE ACCOUNT button -->
 
     <script src="/js/user-details-script.js"></script>
 </body>
