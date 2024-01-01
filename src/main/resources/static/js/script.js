@@ -18,9 +18,8 @@ function login() {
         if (response.ok) {
             // Redirect to user-details.html on successful login
             window.location.href = '/my-profile';
-        } else {
-            return response.text();
         }
+            return response.text();
     })
     .then(data => {
         // Display API response on failure
