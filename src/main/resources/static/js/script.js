@@ -1,6 +1,5 @@
 // add disabled attribute to login and signup buttons
 // enable buttons once required data is entered
-
 // define password regex (contain numbers, characters, length)
 var reponse = document.getElementById('response');
 
