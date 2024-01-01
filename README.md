@@ -10,17 +10,15 @@ Using this project to:
 3) Create HTML webpage
 4) Add desired css and js
 
-## TO DO
-- [x] Build Basic API
-- [x] Setup MongoDB
-- [x] Connect API to DB
-- [x] Create HTML Webpage that connects to API
-- [x] Add signup functionality to webpage
-- [x] Add login functionality to webpage
-- [ ] Add true token generation and fetching user info
-- [x] Improve design of first page
-- [x] Add 'My Profile' page where user can view and update info
-- [ ] Improve design of second page
+# Done
+- [x] Securely storing hashed password and performing validation
+- [x] Ability to login, signup, view profile, logout and delete account
+
+## Yet to Implement
+- [ ] Token generation (currently using random uuid)
+- [ ] user info from token (or at least id from token to query db)
+
+Currently cookie response value is just username
 
 ## Setup
 ### Start Mongo DB
