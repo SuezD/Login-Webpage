@@ -24,5 +24,4 @@ function fetchUserDetails() {
 function displayUserDetails(userDetails) {
     document.getElementById('username').innerText = userDetails.username;
     document.getElementById('firstname').innerText = userDetails.firstName;
-    // Update other placeholders for additional user details
 }
