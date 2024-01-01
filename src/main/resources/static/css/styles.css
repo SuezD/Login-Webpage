@@ -15,7 +15,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     max-width: 400px;
-    height: 500px; /* Adjust the height as needed */
+    height: 600px; /* Adjust the height as needed */
     margin: 20px auto;
     display: flex;
     flex-direction: column;
@@ -82,6 +82,11 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background-color: #cccccc;
 }
 
 .form-group {
