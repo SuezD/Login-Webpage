@@ -10,4 +10,9 @@ public class ViewController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/my-profile")
+    public String profile() {
+        return "user-details";
+    }
 }
