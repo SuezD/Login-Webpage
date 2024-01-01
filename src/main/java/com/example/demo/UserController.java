@@ -34,7 +34,7 @@ public class UserController {
         }
 
         // Check if the username is already taken
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username.toLowerCase());
         if (user == null) {
             return ResponseEntity.badRequest().body("User not found");
         }
@@ -78,7 +78,7 @@ public class UserController {
 
         // Create a new user
         User user = new User();
-        user.setUsername(username);
+        user.setUsername(username.toLowerCase());
         user.setPassword(hashedPassword);
         user.setFirstName(firstname);
 
