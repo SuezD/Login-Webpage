@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-
 @RestController
 public class UserController {
     @Autowired
@@ -26,7 +25,7 @@ public class UserController {
         // authentication logic
         // Check if the username is already taken
         if (userRepository.findByUsername(username) == null) {
-            return ResponseEntity.badRequest().body("Username not found");
+            return ResponseEntity.badRequest().body("User not found");
         }
         if (!userRepository.findByUsername(username).getPassword().equals(password)){
             return ResponseEntity.badRequest().body("Incorrect password");
