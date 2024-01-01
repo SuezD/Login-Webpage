@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -101,6 +103,20 @@ public class UserController {
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    @DeleteMapping("/delete-account")
+    public ResponseEntity<String> deleteUser(@CookieValue(name = "access_token", required = true) String accessToken) {
+        try {
+            // Perform the deletion in MongoDB based on the userId
+            var id = userRepository.findByUsername(accessToken).getId();
+            System.out.println(id);
+            userRepository.deleteById(id);
+            return ResponseEntity.ok("User deleted successfully");
+        } catch (Exception e) {
+            // Handle exceptions, log, and return an error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting user");
         }
     }
 
