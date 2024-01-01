@@ -32,7 +32,7 @@ public class UserController {
         }
         // generate token and return in cookie?
 
-        return ResponseEntity.ok("Login successful. Welcome back "+username); // add "Hello firstname lastname"
+        return ResponseEntity.ok("Login Successful"); // add "Hello firstname lastname"
     }
 
     @PostMapping("/signup")
@@ -70,6 +70,6 @@ public class UserController {
         }
         System.out.println();
         
-        return ResponseEntity.ok("Signup successful");
+        return ResponseEntity.ok("Sign Up Successful");
     }
 }
