@@ -1,11 +1,17 @@
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @RestController
@@ -14,7 +20,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
         if (username == null || password == null){
@@ -24,22 +30,26 @@ public class UserController {
             return ResponseEntity.badRequest().body("Username and Password must not be blank");
         }
 
-        // authentication logic
         // Check if the username is already taken
-        if (userRepository.findByUsername(username) == null) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
             return ResponseEntity.badRequest().body("User not found");
         }
-        if (!userRepository.findByUsername(username).getPassword().equals(password)){
-            System.out.println(userRepository.findByUsername(username).getPassword());
+        if (!user.getPassword().equals(password)){
+            System.out.println(user);
             return ResponseEntity.badRequest().body("Incorrect password");
         }
-        // generate token and return in cookie?
 
-        return ResponseEntity.ok("Login Successful"); // add "Hello firstname lastname"
+        // Generate token and return as cookie
+        String accessToken = generateAccessToken(user);
+        Cookie cookie = new Cookie("access_token", accessToken);
+        cookie.setPath("/"); // Set the cookie path as needed
+        response.addCookie(cookie); 
+        return ResponseEntity.ok("Login Successful");
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest){
+    public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest, HttpServletResponse response){
         String username = signupRequest.getUsername();
         String password = signupRequest.getPassword();
         String firstname = signupRequest.getFirstName();
@@ -65,22 +75,39 @@ public class UserController {
         // Save the user to MongoDB
         userRepository.save(user);
 
-        // fetch all customers
-        System.out.println("Users found with findAll():");
-        System.out.println("-------------------------------");
-        for (User userInDb : userRepository.findAll()) {
-            System.out.println(userInDb);
-        }
-        System.out.println();
+        // generate token and return in cookie
+        String accessToken = generateAccessToken(user);
+        Cookie cookie = new Cookie("access_token", accessToken);
+        cookie.setPath("/"); // Set the cookie path
+        response.addCookie(cookie); 
         
         return ResponseEntity.ok("Sign Up Successful");
     }
 
     @PostMapping("/user-details")
-    private ResponseEntity<User> userDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken){
-        // validate access token and use it to retrieve user details
-        // return user details in response
-        User user = userRepository.findByUsername("kimkil");
-        return ResponseEntity.ok(user);
+    private ResponseEntity<User> userDetails(@CookieValue(name = "access_token", required = true) String accessToken) {
+        if (isValidToken(accessToken)) {
+            User user = fetchUserDetails();
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    private String generateAccessToken(User user) {
+        // Implement logic to generate secure JWT
+        return UUID.randomUUID().toString();
+    }
+
+    private boolean isValidToken(String accessToken) {
+        // Token Validation
+        return accessToken != null && !accessToken.isEmpty();
+    }
+
+    private User fetchUserDetails() {
+        // Should decrypt token and extract details from there (possibly?)
+        String username = "kimkil";
+        User user = userRepository.findByUsername(username);
+        return user;
     }
 }
