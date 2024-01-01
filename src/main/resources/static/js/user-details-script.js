@@ -7,8 +7,7 @@ function fetchUserDetails() {
     fetch('/user-details', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': '12345678'
+            'Content-Type': 'application/json'
         },
     }) 
     .then(response => {
