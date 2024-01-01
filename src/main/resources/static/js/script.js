@@ -17,7 +17,7 @@ function login() {
     .then(response => {
         if (response.ok) {
             // Redirect to user-details.html on successful login
-            window.location.href = '/user-details.html';
+            window.location.href = '/my-profile';
         } else {
             return response.text();
         }
