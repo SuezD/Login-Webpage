@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,8 +36,11 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.badRequest().body("User not found");
         }
-        if (!user.getPassword().equals(password)){
-            System.out.println(user);
+
+        // Hash password
+        String hashedPassword = new BCryptPasswordEncoder().encode(password);
+
+        if (!user.getPassword().equals(hashedPassword)){
             return ResponseEntity.badRequest().body("Incorrect password");
         }
 
@@ -44,6 +48,8 @@ public class UserController {
         String accessToken = generateAccessToken(user);
         Cookie cookie = new Cookie("access_token", accessToken);
         cookie.setPath("/"); // Set the cookie path as needed
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
         response.addCookie(cookie); 
         return ResponseEntity.ok("Login Successful");
     }
@@ -66,10 +72,13 @@ public class UserController {
             return ResponseEntity.badRequest().body("Username already exists");
         }
 
+        // Hash password
+        String hashedPassword = new BCryptPasswordEncoder().encode(password);
+
         // Create a new user
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
         user.setFirstName(firstname);
 
         // Save the user to MongoDB
@@ -79,6 +88,8 @@ public class UserController {
         String accessToken = generateAccessToken(user);
         Cookie cookie = new Cookie("access_token", accessToken);
         cookie.setPath("/"); // Set the cookie path
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
         response.addCookie(cookie); 
         
         return ResponseEntity.ok("Sign Up Successful");
