@@ -9,6 +9,29 @@ body {
     height: 100vh;
 }
 
+/* Additional style for the profile page */
+body.profile-page {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-container {
+    background-color: #4CAF50; /* Green color for the profile box */
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px; /* Adjust padding as needed */
+    text-align: center;
+}
+
+/* Apply the styles to the profile container */
+.profile-container h2 {
+    margin: 0; /* Remove default margin */
+}
+
 .container {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -64,6 +87,24 @@ h2 {
     margin: 20px;
 }
 
+body.user-details-page {
+    background-color: #f4f4f4; /* Background color for the entire user-details page */
+    margin: 0; /* Remove default body margin */
+}
+
+#user-details-container h2 {
+    margin: 0; /* Remove default margin */
+    background-color: #4CAF50; /* Green background color for the profile title */
+    padding: 10px; /* Adjust padding as needed */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: white;
+}
+
+#user-details p {
+    margin: 5px 0; /* Adjust the margin between paragraphs in user-details */
+}
+
 .container,
 .tab {
     width: 300px;
@@ -87,6 +128,35 @@ button:hover {
 button:disabled {
     cursor: not-allowed;
     background-color: #cccccc;
+}
+
+button.user-details {
+    background-color: #cccccc;
+    width: 200px;
+    margin: 0 auto;
+}
+
+#user-details p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #555;
+}
+
+#user-details span.label {
+    font-size: 12px;
+    color: #888; /* Faint grey color */
+    display: block;
+    margin-bottom: 5px;
+}
+
+#user-details span.value {
+    font-size: 16px;
+    color: #333; /* Normal black text */
+}
+
+button#delete {
+    background-color: red;
+    margin-top: 5px;
 }
 
 .form-group {
