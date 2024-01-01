@@ -2,8 +2,10 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 
 @RestController
@@ -28,6 +30,7 @@ public class UserController {
             return ResponseEntity.badRequest().body("User not found");
         }
         if (!userRepository.findByUsername(username).getPassword().equals(password)){
+            System.out.println(userRepository.findByUsername(username).getPassword());
             return ResponseEntity.badRequest().body("Incorrect password");
         }
         // generate token and return in cookie?
@@ -71,5 +74,13 @@ public class UserController {
         System.out.println();
         
         return ResponseEntity.ok("Sign Up Successful");
+    }
+
+    @PostMapping("/user-details")
+    private ResponseEntity<User> userDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken){
+        // validate access token and use it to retrieve user details
+        // return user details in response
+        User user = userRepository.findByUsername("kimkil");
+        return ResponseEntity.ok(user);
     }
 }
