@@ -49,8 +49,8 @@ function signup() {
     })
     .then(response => {
         if (response.ok) {
-            // Redirect to user-details.html on successful signup
-            window.location.href = '/user-details.html';
+            // Redirect to user-details.html on successful login
+            window.location.href = '/my-profile';
         } else {
             return response.text();
         }
