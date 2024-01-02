@@ -2,7 +2,6 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +31,6 @@ public class UserController {
         if (username == "" || password == ""){
             return ResponseEntity.badRequest().body("Username and Password must not be blank");
         }
-
         // Check if the username is already taken
         User user = userRepository.findByUsername(username.toLowerCase());
         if (user == null) {
@@ -69,7 +67,7 @@ public class UserController {
         }
 
         // Check if the username is already taken
-        if (userRepository.findByUsername(username) != null) {
+        if (userRepository.findByUsername(username.toLowerCase()) != null) {
             return ResponseEntity.badRequest().body("Username already exists");
         }
 
