@@ -29,9 +29,11 @@ Run the below command to start the MongoDB service
 ### Query DB
   ```
   mongosh
-  user user-details
+  show dbs
+  use user-details
   show collections
   db.users.find()
+  db.users.deleteMany({})
   ```
 ### Run Springboot Application
   ```
@@ -46,3 +48,5 @@ Visit http://localhost:8080/
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password", "firstName":"your_firstname"}' http://localhost:8080/signup
   curl -X POST -H "Content-Type: application/json" -d '{"username":"your_username","password":"your_password"}' http://localhost:8080/login
   ```
+## Troubleshooting
+On occassion the browser won't pull the latest script.js file. In this case, you'll need to force a browser refresh (cmd+shift+r on Mac and CTRL+F5 on windows). [More details here]([url](https://stackoverflow.com/questions/3951187/javascript-file-not-updating-no-matter-what-i-do#:~:text=Type%20in%20the%20full%20address,should%20run%20as%20you%20expect.)https://stackoverflow.com/questions/3951187/javascript-file-not-updating-no-matter-what-i-do#:~:text=Type%20in%20the%20full%20address,should%20run%20as%20you%20expect.)
