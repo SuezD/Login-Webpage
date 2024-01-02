@@ -10,7 +10,7 @@ Using this project to:
 3) Create HTML webpage
 4) Add desired css and js
 
-# Done
+## Done
 - [x] Securely storing hashed password and performing validation
 - [x] Ability to login, signup, view profile, logout and delete account
 
