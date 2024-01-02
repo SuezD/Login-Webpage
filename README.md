@@ -4,21 +4,24 @@ Using this project to:
 * Build a full web application (covers front-end, back-end, db and security)
 * Better understand modern oauth2.0 flow
 
+# Plan
+To build a web application that includes the following features
+- [x] Login
+- [x] Sign Up
+- [x] View Profile
+- [x] Logout
+- [x] Delete Account
+
+The site should be secured as follows
+- [ ] Accessed through HTTPS
+- [ ] Upon login, user session should be maintained through a token stored in session cookie
+- [x] Passwords should be hashed, salted and peppered (using bcypt function)
+
 ## Steps and Choices
 1) Build API - using Springboot (over expressjs so that I can brush up on my java skills)
 2) Setup DB - using mongoDB (over SQL since I've never used mongodb before)
 3) Create HTML webpage
 4) Add desired css and js
-
-## Done
-- [x] Securely storing hashed password and performing validation
-- [x] Ability to login, signup, view profile, logout and delete account
-
-## Yet to Implement
-- [ ] Token generation (currently using random uuid)
-- [ ] user info from token (or at least id from token to query db)
-
-Currently cookie response value is just username
 
 ## Setup
 ### Start Mongo DB
@@ -26,7 +29,7 @@ Run the below command to start the MongoDB service
   ```
   brew services start mongodb-community
   ```
-### Query DB
+### Query DB (optional)
   ```
   mongosh
   show dbs
