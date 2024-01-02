@@ -1,6 +1,13 @@
 // add disabled attribute to login and signup buttons
 // enable buttons once required data is entered
 // define password regex (contain numbers, characters, length)
+var input = document.getElementById("login-password");
+input.addEventListener("keypress", function (event) {
+    if (event.key == 'Enter') {
+       login();
+    }
+ });
+
 var reponse = document.getElementById('response');
 
 function login() {
