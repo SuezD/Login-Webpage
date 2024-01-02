@@ -23,7 +23,7 @@ The site should be secured as follows
 3) Create HTML webpage
 4) Add desired css and js
 
-## Setup
+## Setup (tested using Macbook)
 ### Start Mongo DB
 Run the below command to start the MongoDB service
   ```
