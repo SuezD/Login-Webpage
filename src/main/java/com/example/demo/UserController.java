@@ -38,8 +38,6 @@ public class UserController {
         }
 
         if (!new BCryptPasswordEncoder().matches(password, user.getPassword())){
-            System.out.println(user.getPassword());
-            System.out.println(password);
             return ResponseEntity.badRequest().body("Incorrect password");
         }
 
@@ -109,7 +107,6 @@ public class UserController {
         try {
             // Perform the deletion in MongoDB based on the userId
             var id = userRepository.findByUsername(accessToken).getId();
-            System.out.println(id);
             userRepository.deleteById(id);
             return ResponseEntity.ok("User deleted successfully");
         } catch (Exception e) {
