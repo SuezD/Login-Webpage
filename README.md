@@ -31,7 +31,7 @@ The site should be secured as follows
 ``` ./gradlew build ```
 ### Create Docker Image (optional)
 ``` docker build -t myapp .```
-### Run Container (and build image)
+### Run Containers (and build image)
 This will start a container for the application and mongodb
 ``` docker-compose up --build```
 
