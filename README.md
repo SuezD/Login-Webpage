@@ -24,14 +24,20 @@ The site should be secured as follows
 4) Add desired css and js
 
 ## Prerequisites
-[Docker]([url](https://docs.docker.com/engine/install/))
+* [Docker](https://docs.docker.com/engine/install/)
 
 ## Setup (from any machine)
-### Build project
+### 1 Set gradle as executable
+For Mac
+```chmod +x ./gradlew```
+
+For Windows
+```TBA```
+### 2 Build project
 ``` ./gradlew build ```
-### Create Docker Image (optional)
+### 3 Create Docker Image (optional)
 ``` docker build -t myapp .```
-### Run Containers (and build image)
+### 4 Run Containers (and build image)
 This will start a container for the application and mongodb
 ``` docker-compose up --build```
 
@@ -41,12 +47,12 @@ This will start a container for the application and mongodb
 * Java 17
 
 ## Setup (tested using Macbook)
-### Start Mongo DB
+### 1 Start Mongo DB
 Run the below command to start the MongoDB service
   ```
   brew services start mongodb-community
   ```
-### Query DB (optional)
+### 2 Query DB (optional)
   ```
   mongosh
   show dbs
@@ -55,7 +61,7 @@ Run the below command to start the MongoDB service
   db.users.find()
   db.users.deleteMany({})
   ```
-### Run Springboot Application
+### 3 Run Springboot Application
   ```
   ./gradlew build
   ./gradlew bootRun
