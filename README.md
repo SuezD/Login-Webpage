@@ -29,11 +29,11 @@ The site should be secured as follows
 ## Setup (from any machine)
 ### Build project
 ``` ./gradlew build ```
-### Create Docker Image
+### Create Docker Image (optional)
 ``` docker build -t myapp .```
-### Run Container
+### Run Container (and build image)
 This will start a container for the application and mongodb
-``` docker-compose up```
+``` docker-compose up --build```
 
 ## Prerequisites
 * Mongodb
