@@ -23,6 +23,23 @@ The site should be secured as follows
 3) Create HTML webpage
 4) Add desired css and js
 
+## Prerequisites
+[Docker]([url](https://docs.docker.com/engine/install/))
+
+## Setup (from any machine)
+### Build project
+``` ./gradlew build ```
+### Create Docker Image
+``` docker build -t myapp .```
+### Run image
+This will start a container for the application and mongodb
+``` docker-compose up```
+
+## Prerequisites
+* Mongodb
+* Gradle
+* Java 17
+
 ## Setup (tested using Macbook)
 ### Start Mongo DB
 Run the below command to start the MongoDB service
