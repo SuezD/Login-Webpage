@@ -76,3 +76,9 @@ Visit http://localhost:8080/
   ```
 ## Troubleshooting
 On occassion the browser won't pull the latest script.js file. In this case, you'll need to force a browser refresh (cmd+shift+r on Mac and CTRL+F5 on windows). [More details here]([url](https://stackoverflow.com/questions/3951187/javascript-file-not-updating-no-matter-what-i-do#:~:text=Type%20in%20the%20full%20address,should%20run%20as%20you%20expect.)https://stackoverflow.com/questions/3951187/javascript-file-not-updating-no-matter-what-i-do#:~:text=Type%20in%20the%20full%20address,should%20run%20as%20you%20expect.)
+
+# User Interface
+Login Page                 |  Signup Page
+:-------------------------:|:-------------------------:
+![](/assets/loginUI.png)   |  ![](/assets/signupUI.png)
+
